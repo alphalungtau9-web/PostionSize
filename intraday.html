@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LungtauPa — Full Website (Single HTML File)</title>
+
+<style>
+:root{--accent:#0b6efd;--bg:#f7f9fb;--text:#222}
+*{box-sizing:border-box}
+body{font-family:Arial, sans-serif;margin:0;color:var(--text);background:var(--bg)}
+.container{max-width:900px;margin:0 auto;padding:20px}
+header{background:#fff;padding:12px 0;border-bottom:1px solid #ddd;position:sticky;top:0}
+.brand{font-weight:700;color:var(--accent);text-decoration:none;font-size:22px;margin-right:16px}
+nav a{margin-right:12px;text-decoration:none;color:#333;font-size:15px}
+h1,h2,h3{color:#111}
+.card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 2px 6px rgba(20,20,40,0.04);margin-bottom:20px}
+.btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none}
+input,textarea{width:100%;padding:8px;margin:6px 0;border:1px solid #ccc;border-radius:6px}
+footer{text-align:center;padding:20px;margin-top:40px;color:#666}
+.section{padding-top:40px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <a class="brand" href="#home">LungtauPa</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#articles">Articles</a>
+      <a href="#calculator">Tools</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- HOME -->
+<div id="home" class="container section">
+  <h1>Practical trading tools & guides</h1>
+  <p class="lead">Use our intraday position sizing calculator, read clear guides, and learn risk management.</p>
+
+  <div class="card">
+    <h2>Intraday Position Sizing Calculator</h2>
+    <p>Calculate position size using risk %, stop loss and balance.</p>
+    <a class="btn" href="#calculator">Open Calculator</a>
+  </div>
+
+  <div class="card">
+    <h2>Latest Articles</h2>
+    <ul>
+      <li><a href="#article1">What Is Intraday Trading? Beginner Guide</a></li>
+      <li><a href="#article2">How to Calculate Position Size</a></li>
+      <li><a href="#article3">Best Risk Management Strategy</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ARTICLES -->
+<div id="articles" class="container section">
+  <h1>Articles</h1>
+  <ul>
+    <li><a href="#article1">Article 1 — Intraday Trading</a></li>
+    <li><a href="#article2">Article 2 — Position Size</a></li>
+    <li><a href="#article3">Article 3 — Risk Management</a></li>
+  </ul>
+</div>
+
+
+<!-- ARTICLE 1 -->
+<div id="article1" class="container section">
+  <h1>What Is Intraday Trading? Beginner Guide</h1>
+  <p>Intraday trading means buying and selling within the same day. No positions are held overnight.</p>
+
+  <h2>Why traders choose intraday</h2>
+  <ul>
+    <li>Lower overnight risk</li>
+    <li>More trading opportunities</li>
+    <li>Ability to use leverage</li>
+  </ul>
+
+  <h2>Key concepts</h2>
+  <ul>
+    <li>Risk management</li>
+    <li>Stop loss</li>
+    <li>Liquidity</li>
+  </ul>
+</div>
+
+
+<!-- ARTICLE 2 -->
+<div id="article2" class="container section">
+  <h1>How to Calculate Position Size</h1>
+  <p>Position size = Risk amount ÷ (Entry – Stop Loss)</p>
+
+  <h2>Example</h2>
+  <p>₹100,000 balance → risk 1% = ₹1,000  
+     Entry 100, stop 98 → risk per share = 2  
+     Position size = 1000 ÷ 2 = 500 shares.
+  </p>
+</div>
+
+
+<!-- ARTICLE 3 -->
+<div id="article3" class="container section">
+  <h1>Best Risk Management Strategy</h1>
+  <p>Use strict stop loss, fixed % risk, avoid overtrading, control emotions.</p>
+</div>
+
+
+<!-- CALCULATOR -->
+<div id="calculator" class="container section">
+<h1>Intraday Position Sizing Calculator</h1>
+
+<div class="card">
+  <label>Account balance (₹)</label>
+  <input id="balance" type="number" value="100000">
+
+  <label>Risk per trade (%)</label>
+  <input id="riskpercent" type="number" value="1">
+
+  <label>Entry price (₹)</label>
+  <input id="entry" type="number" value="100">
+
+  <label>Stop loss price (₹)</label>
+  <input id="stop" type="number" value="98">
+
+  <button class="btn" onclick="calc()">Calculate</button>
+
+  <div id="result" style="margin-top:12px;font-weight:bold"></div>
+</div>
+</div>
+
+<script>
+function calc(){
+  const bal = Number(document.getElementById('balance').value);
+  const rp = Number(document.getElementById('riskpercent').value);
+  const entry = Number(document.getElementById('entry').value);
+  const stop = Number(document.getElementById('stop').value);
+
+  const riskAmount = bal * (rp/100);
+  const perUnit = Math.abs(entry - stop);
+  const units = perUnit>0 ? Math.floor(riskAmount/perUnit) : 0;
+
+  document.getElementById('result').innerHTML =
+    "Risk Amount: ₹"+riskAmount.toFixed(2)+
+    "<br>Risk per Share: ₹"+perUnit.toFixed(2)+
+    "<br>Shares to Buy: "+units;
+}
+</script>
+
+
+<!-- ABOUT -->
+<div id="about" class="container section">
+  <h1>About</h1>
+  <p>LungtauPa provides free trading tools and guides to help traders improve risk management.</p>
+</div>
+
+
+<!-- CONTACT -->
+<div id="contact" class="container section">
+  <h1>Contact Us</h1>
+
+  <form>
+    <label>Name</label>
+    <input type="text">
+
+    <label>Email</label>
+    <input type="email">
+
+    <label>Message</label>
+    <textarea rows="5"></textarea>
+
+    <button class="btn">Send</button>
+  </form>
+</div>
+
+
+<!-- PRIVACY -->
+<div id="privacy" class="container section">
+  <h1>Privacy Policy</h1>
+  <p>We respect your privacy. No personal data is sold.</p>
+</div>
+
+
+<!-- TERMS -->
+<div id="terms" class="container section">
+  <h1>Terms of Service</h1>
+  <p>Content is educational. Not financial advice.</p>
+</div>
+
+
+<footer>
+  © 2025 LungtauPa — All rights reserved.
+</footer>
+
+</body>
+</html>
